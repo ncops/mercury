@@ -1,0 +1,8 @@
+FROM nc-dvo-docker.artifactory.nchosting.dk/rhel7/middleware/nodejs/10.15.3:latest
+COPY . /data/software/mercury
+
+ENV REDIS_HOST docker.for.win.localhost
+ENV REDIS_PORT 6379
+ENV REDIS_PASS redis_pw
+
+ENTRYPOINT node /data/software/mercury/app.js
