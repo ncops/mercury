@@ -1,8 +1,23 @@
+const config = {
+	redis: {
+		host: process.env.REDIS_HOST,
+		port: process.env.REDIS_PORT,
+		password: process.env.REDIS_PASS
+	},
+	ui: {
+		public_port: 3000,
+		socket_io_port: 3001
+	}
+};
+
 var express = require('express');
 var app = express();
 var path = require('path');
 var redis = require("redis"),
-client = redis.createClient();
+
+client = redis.createClient(config.redis);
+
+console.log("HI!");
 
 var options = {
 	dotfiles: 'ignore',
@@ -14,9 +29,9 @@ var options = {
 	setHeaders: function (res, path, stat) {
 		res.set('x-timestamp', Date.now())
 	}
-}
+};
 
-app.use(express.static('public', options))
+app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res){
 	res.sendFile(path.join(__dirname + '/public/index.html'));
@@ -73,5 +88,5 @@ socketio.on('connection', (socket) => {
 	queueCheck();
 });
 
-socketio.listen(3001);
-app.listen(3000);
+socketio.listen(config.ui.socket_io_port);
+app.listen(config.ui.public_port);
