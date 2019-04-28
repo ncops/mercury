@@ -22,7 +22,8 @@ $('#jobsCountSave').on('click', () => {
 
 let prevJobCount;
 let difference = 0;
-let secondCount = 5000; // 5 seconds
+let secondCount = 2500; // 5 seconds
+let avgsJobsPerSecond = [];
 
 moment.locale('da');
 
@@ -31,17 +32,35 @@ setInterval(function(){
         prevJobCount = window.jobCount;
     }
 
-    if(prevJobCount != window.jobCount){
+    if(prevJobCount != 0){
        difference = prevJobCount - window.jobCount;
+    } else {
+        difference = 0;
+        prevJobCount = window.jobCount;
     }
 
-    $('#jobsPerSecond').text(difference);
-    $('#jobsPerHour').text(difference/(secondCount/1000) * 60 * 60);
+    let average = getAverage(avgsJobsPerSecond, (difference/(secondCount/1000)));
 
-    let timeLeft = window.jobCount/(difference/(secondCount/1000));
+    $('#jobsPerSecond').text(average);
+    $('#jobsPerHour').text((average * 60 * 60).toFixed(2));
+
+    let timeLeft = window.jobCount/average;
     let k = moment().add(timeLeft, 's');
 
-    $('#jobsExpectedTime').text(moment(k.format('HH:mm')).calendar());
+    if(window.jobCount !== 0){
+        $('#jobsExpectedTime').text(moment(k).calendar());
+    } 
 
     prevJobCount = window.jobCount;
 }, secondCount);
+
+
+const getAverage = (theArray, value) => {
+    if(theArray.length === 25){
+        theArray.shift();
+    }
+
+    theArray.push(value);
+    console.log(theArray);
+    return (theArray.reduce((a,b) => a + b, 0) / theArray.length).toFixed(2);
+};
