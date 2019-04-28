@@ -27,12 +27,19 @@
     </div>
 
     <div class="container">
+      <div class="row">
+        <div class="col-12 col-md">
+          <center><h3 id="workersInTotal">0</h3><small>workers in action</small></center>
+        </div>
+        <div class="col-12 col-md">
+          <center><h3 id="jobsInTotal">0</h3><small>jobs in queue</small></center>
+        </div>
+      </div>
       <canvas id="myChart"></canvas>
-
       <div class="pt-4 my-md-5 pt-md-5">
         <div class="row">
           <div class="col-12 col-md">
-            <center><h4 id="jobsPerSecond">0</h4><small>job completions per 5 second</small></center>
+            <center><h4 id="jobsPerSecond">0</h4><small>average completions per second</small></center>
           </div>
           <div class="col-12 col-md">
             <center><h4 id="jobsPerHour">0</h4><small>expected completions per hour</small></center>
@@ -41,6 +48,7 @@
             <center><h4 id="jobsExpectedTime">0</h4><small>until finished</small></center>
           </div>
         </div>
+
       </div>
     </div>
 
