@@ -17,8 +17,6 @@ var redis = require("redis"),
 
 client = redis.createClient(config.redis);
 
-console.log("HI!");
-
 var options = {
 	dotfiles: 'ignore',
 	etag: false,

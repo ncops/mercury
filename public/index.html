@@ -26,17 +26,22 @@
       </nav>
     </div>
 
-
     <div class="container">
-      
       <canvas id="myChart"></canvas>
 
-      <footer class="pt-4 my-md-5 pt-md-5">
+      <div class="pt-4 my-md-5 pt-md-5">
         <div class="row">
           <div class="col-12 col-md">
+            <center><h4 id="jobsPerSecond">0</h4><small>job completions per 5 second</small></center>
+          </div>
+          <div class="col-12 col-md">
+            <center><h4 id="jobsPerHour">0</h4><small>expected completions per hour</small></center>
+          </div>
+          <div class="col-12 col-md">
+            <center><h4 id="jobsExpectedTime">0</h4><small>until finished</small></center>
           </div>
         </div>
-      </footer>
+      </div>
     </div>
 
     <!-- Modal -->
@@ -78,6 +83,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/min/moment.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-streaming@1.8.0"></script>
+    <script src="/resources/moment.min.js"></script>
     <script src="/resources/chartjs.form.js"></script>
     <script src="/resources/ui.js"></script>
 

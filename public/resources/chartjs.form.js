@@ -1,15 +1,10 @@
-const socket = io('http://localhost:3001');
+const socket = io('http://erst-demo-ui-socket-mercury.cluster.nonp.dp.dig.nchosting.dk');
 
-// Counters
 let workers = [];
 let jobs = [];
 
-// Statistics
-let prevJobsCount = 0;
-let currJobsCount = 0;
-
 socket.on('connect', () => {
-  console.log(socket.id); // 'G5p5...'
+  console.log(socket.id);
 });
 
 socket.on('queueCheck', (data) => {
