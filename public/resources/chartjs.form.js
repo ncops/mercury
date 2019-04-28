@@ -36,14 +36,16 @@ function onRefresh(chart) {
 		y: worker
 	});
 
-	chart.config.data.datasets[0].label = 'Workers = ' + worker;
+	// chart.config.data.datasets[0].label -- the label)
+	$('#workersInTotal').text(worker);
 
 	chart.config.data.datasets[1].data.push({
 		x: Date.now(),
 		y: job
 	});
 
-	chart.config.data.datasets[1].label = 'Jobs = ' + job
+	//chart.config.data.datasets[1].label = 'Jobs = ' + job
+    $('#jobsInTotal').text(job);
 
 
 }
