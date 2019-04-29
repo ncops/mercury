@@ -49,7 +49,7 @@ setInterval(function(){
 
     if(window.jobCount !== 0){
         $('#jobsExpectedTime').text(moment(k).calendar());
-    } 
+    }
 
     prevJobCount = window.jobCount;
 }, secondCount);

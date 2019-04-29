@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>OKD - Præsentation</title>
+    <title>ERST - Mercury</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/resources/bootstrap.min.css" rel="stylesheet">
@@ -22,7 +22,7 @@
       <h5 class="my-0 mr-md-auto font-weight-normal"><img src="/resources/netcompany_logo.png" width="175"></h5>
 
       <nav class="my-2 my-md-0 mr-md-3">
-        <a id="setJob" class="btn btn-outline-info p-2 text-dark" href="#" data-toggle="modal" data-target="#setJobsModalBox">Set jobs</a>
+        <button id="setJob" type="button" class="btn btn-success" data-toggle="modal" data-target="#setJobsModalBox">Create jobs</button>
       </nav>
     </div>
 
@@ -57,7 +57,7 @@
       <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="amountOfJobsTitle">Set amount of jobs</h5>
+            <h5 class="modal-title" id="amountOfJobsTitle">Create jobs</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -74,8 +74,8 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button id="jobsCountSave" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+            <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button id="jobsCountSave" type="button" class="btn btn-success" data-dismiss="modal">Save changes</button>
           </div>
         </div>
       </div>
