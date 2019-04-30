@@ -2,7 +2,7 @@ const fs = require('fs');
 const expect = require('chai').expect;
 const dom = require('cheerio');
 
-const logo = "/resources/erhvervsstyrelsen_logo.png";
+const logo = "/resources/netcompany_logo.png";
 
 describe('#ID: OK-7 - Ændre logo på skaleringsportal', function () {
     it('Log file must reside in resources', function () {
