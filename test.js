@@ -6,7 +6,8 @@ const jira = require('tests/jira.js');
 let failedTests = {};
 
 describe('OK-7', function () {
-    const logo = "/resources/erhvervsstyrelsen_logo.png";
+    //const logo = "/resources/erhvervsstyrelsen_logo.png";
+    const logo = "/resources/netcompany_logo.png";
 
     it('Logo file must reside in resources', function () {
         // Check if logo resides in public/resources/
