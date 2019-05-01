@@ -1,7 +1,6 @@
 const fs = require('fs');
 const expect = require('chai').expect;
 const dom = require('cheerio');
-const xray = require(__dirname + '/tests/xray');
 
 let failedTests = {};
 
