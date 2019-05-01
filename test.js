@@ -34,7 +34,7 @@ describe('OK-7', function () {
         afterEach(function() {
             if(this.currentTest.state === "failed"){
                 failedTests[userstory].push(this.currentTest);
-                process.env['FAILED_USER_STORY'] = userstory;
+                fs.writeFileSync(__dirname + '/FAIL', userstory);
             }
         });
     });
