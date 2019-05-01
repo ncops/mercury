@@ -34,7 +34,7 @@ describe('OK-7', function () {
         afterEach(function() {
             if(this.currentTest.state === "failed"){
                 failedTests[userstory].push(this.currentTest);
-                process.env['BUILD_URL'] = 'https://google.dk/';
+                process.env['FAILED_USER_STORY'] = userstory;
             }
         });
     });
