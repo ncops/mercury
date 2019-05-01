@@ -1,8 +1,9 @@
 const fs = require('fs');
 const expect = require('chai').expect;
 const dom = require('cheerio');
+const jira = require('./tests/jira.js');
 
-let failedTests = {};
+let tests = {};
 
 describe('OK-7', function () {
     //const logo = "/resources/erhvervsstyrelsen_logo.png";
@@ -28,26 +29,40 @@ describe('OK-7', function () {
 
     });
 
-
     before(() => {
-        const userstory = this.title;
-        failedTests[userstory] = [];
+        let userstory = this.title;
+        tests[userstory] = {
+            success: [],
+            failure: []
+        };
+
         afterEach(function() {
             if(this.currentTest.state === "failed"){
-                failedTests[userstory].push(this.currentTest);
-                fs.writeFileSync(__dirname + '/FAIL', userstory);
+                tests[userstory].failure.push(this.currentTest);
+            } else {
+                tests[userstory].success.push(this.currentTest);
             }
         });
     });
 });
 
 after( () => {
+    // Let Jenkins know in GitHub which user story is failing.
+    let issueExists = false;
     let failedComment = "Greetings! Unfortunately the following userstories is failing with your commit: \n\n";
-    for(let userstory in failedTests){
-        if(failedTests[userstory].length > 0){
+    for(let userstory in tests.failure){
+        if(tests[userstory].failure.length > 0){
             failedComment += 'https://demoportal.atlassian.net/browse/' + userstory + '\n'
+            issueExists = true;
         }
     }
     failedComment += "\n Best regards, \n Jenkins!";
-    fs.writeFileSync(__dirname + '/FAIL', failedComment);
+    if(issueExists){
+        fs.writeFileSync(__dirname + '/FAIL', failedComment);
+    } else {
+        fs.writeFileSync(__dirname + '/FAIL', "Awesome commit! Well done :)");
+    }
+
+    // Let us create automatically all programmically made tests into the Jira user story.
+    let k = new jira(tests);
 });
