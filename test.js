@@ -41,13 +41,12 @@ describe('OK-7', function () {
 });
 
 after( () => {
-    let failedComment = "Greetings! Unfortunately the following userstories is failing with your commit: \n";
-    failedTests.forEach(userstory => {
-        failedComment += 'https://demoportal.atlassian.net/browse/' + userstory + '\n'
-    });
+    let failedComment = "Greetings! Unfortunately the following userstories is failing with your commit: \n\n";
+    for(let userstory in failedTests){
+        if(failedTests[userstory].length > 0){
+            failedComment += 'https://demoportal.atlassian.net/browse/' + userstory + '\n'
+        }
+    }
     failedComment += "\n Best regards, \n Jenkins!";
     fs.writeFileSync(__dirname + '/FAIL', failedComment);
 });
-
-
-
