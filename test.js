@@ -59,6 +59,8 @@ after( () => {
     failedComment += "\n Best regards, \n Jenkins!";
     if(issueExists){
         fs.writeFileSync(__dirname + '/FAIL', failedComment);
+    } else {
+        fs.writeFileSync(__dirname + '/FAIL', "Awesome commit! Well done :)");
     }
 
     // Let us create automatically all programmically made tests into the Jira user story.
