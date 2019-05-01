@@ -1,6 +1,7 @@
 const fs = require('fs');
 const expect = require('chai').expect;
 const dom = require('cheerio');
+const jira = require('tests/jira.js');
 
 let failedTests = {};
 
@@ -27,17 +28,28 @@ describe('OK-7', function () {
 
     });
 
-
     before(() => {
         const userstory = this.title;
         failedTests[userstory] = [];
         afterEach(function() {
             if(this.currentTest.state === "failed"){
                 failedTests[userstory].push(this.currentTest);
-                process.env['BUILD_URL'] = 'https://google.dk/';
             }
         });
     });
 });
 
-
+after( () => {
+    let issueExists = false;
+    let failedComment = "Greetings! Unfortunately the following userstories is failing with your commit: \n\n";
+    for(let userstory in failedTests){
+        if(failedTests[userstory].length > 0){
+            failedComment += 'https://demoportal.atlassian.net/browse/' + userstory + '\n'
+            issueExists = true;
+        }
+    }
+    failedComment += "\n Best regards, \n Jenkins!";
+    if(issueExists){
+        fs.writeFileSync(__dirname + '/FAIL', failedComment);
+    }
+});
