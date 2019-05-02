@@ -3,8 +3,8 @@ var JiraApi = require('jira-client');
 var jira = new JiraApi({
     protocol: 'https',
     host: 'demoportal.atlassian.net',
-    username: "ruth@netcompany.com",
-    password: "VWscGkfimDYFSBmjBK1kB53D",
+    username: process.env.JIRA_USERNAME,
+    password: process.env.JIRA_PASSWORD,
     apiVersion: '2',
     strictSSL: true
 });
