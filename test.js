@@ -49,14 +49,19 @@ describe('OK-53', function () {
 after( () => {
     // Let Jenkins know in GitHub which user story is failing.
     let issueExists = false;
-    let failedComment = "Greetings! Unfortunately the following userstories is failing with your commit: \n\n";
+    let failedComment = "Greetings! Unfortunately we have the following issues with your commit: \n\n";
     for(let userstory in tests){
         if(tests[userstory].failure.length > 0){
-            failedComment += 'https://demoportal.atlassian.net/browse/' + userstory + '\n';
+            failedComment += 'Userstory: ' + userstory + ' - https://demoportal.atlassian.net/browse/' + userstory + '\n';
+            failedComment += '  Failed with the following tests: \n';
+            tests[userstory].failure.forEach(test => {
+                failedComment += "      Test: " + test.title + "\n";
+                failedComment += "      Error: " + test.err.message + "\n";
+            });
             issueExists = true;
         }
     }
-    failedComment += "\n Best regards, \n Jenkins!";
+    failedComment += "\nBest regards, \nJenkins!";
     if(issueExists){
         fs.writeFileSync(__dirname + '/FAIL', failedComment);
     } else {

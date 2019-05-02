@@ -3,8 +3,8 @@ var JiraApi = require('jira-client');
 var jira = new JiraApi({
     protocol: 'https',
     host: 'demoportal.atlassian.net',
-    username: process.env.JIRA_USERNAME,
-    password: process.env.JIRA_PASSWORD,
+    username: "ruth@netcompany.com",
+    password: "VWscGkfimDYFSBmjBK1kB53D",
     apiVersion: '2',
     strictSSL: true
 });
@@ -36,11 +36,11 @@ class jiraController {
         jira.findIssue(userstory)
             .then((issue) => {
                 issue.fields.issuelinks.forEach(linkedIssue => {
-                    if(linkedIssue.outwardIssue !== 'undefined'){
-                        if(linkedIssue.outwardIssue && linkedIssue.outwardIssue.fields !== 'undefined'){
-                            if(linkedIssue.outwardIssue.fields.issuetype !== 'undefined' && linkedIssue.outwardIssue.fields.issuetype.name === 'Test'){
-                                let name = linkedIssue.outwardIssue.fields.summary;
-                                this.fetchedTests[userstory][name] = linkedIssue.outwardIssue.fields.issuetype.id;
+                    if(linkedIssue.inwardIssue !== 'undefined'){
+                        if(linkedIssue.inwardIssue && linkedIssue.inwardIssue.fields !== 'undefined'){
+                            if(linkedIssue.inwardIssue.fields.issuetype !== 'undefined' && linkedIssue.inwardIssue.fields.issuetype.name === 'Test'){
+                                let name = linkedIssue.inwardIssue.fields.summary;
+                                this.fetchedTests[userstory][name] = linkedIssue.inwardIssue.fields.issuetype.id;
                             }
                         }
                     }
@@ -105,15 +105,14 @@ class jiraController {
                     "name": "Test"
                 },
                 "inwardIssue": {
-                    "key": userstory
+                    "key": this.testnames[userstory][test].jiraKey
                 },
                 "outwardIssue": {
-                    "key": this.testnames[userstory][test].jiraKey
+                    "key": userstory
                 }
             })
             .then(issue => {
-                console.log(issue);
-                console.log("Why make thise links?")
+
             })
             .catch(err => {
                 console.error(err);
