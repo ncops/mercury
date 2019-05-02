@@ -50,7 +50,7 @@ after( () => {
     // Let Jenkins know in GitHub which user story is failing.
     let issueExists = false;
     let failedComment = "Greetings! Unfortunately the following userstories is failing with your commit: \n\n";
-    for(let userstory in tests.failure){
+    for(let userstory in tests){
         if(tests[userstory].failure.length > 0){
             failedComment += 'https://demoportal.atlassian.net/browse/' + userstory + '\n'
             issueExists = true;
