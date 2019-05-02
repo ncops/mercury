@@ -5,7 +5,7 @@ const jira = require('./tests/jira.js');
 
 let tests = {};
 
-describe('OK-7', function () {
+describe('OK-53', function () {
     //const logo = "/resources/erhvervsstyrelsen_logo.png";
     const logo = "/resources/netcompany_logo.png";
 
@@ -50,9 +50,9 @@ after( () => {
     // Let Jenkins know in GitHub which user story is failing.
     let issueExists = false;
     let failedComment = "Greetings! Unfortunately the following userstories is failing with your commit: \n\n";
-    for(let userstory in tests.failure){
+    for(let userstory in tests){
         if(tests[userstory].failure.length > 0){
-            failedComment += 'https://demoportal.atlassian.net/browse/' + userstory + '\n'
+            failedComment += 'https://demoportal.atlassian.net/browse/' + userstory + '\n';
             issueExists = true;
         }
     }
