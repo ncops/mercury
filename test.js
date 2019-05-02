@@ -53,10 +53,10 @@ after( () => {
     for(let userstory in tests){
         if(tests[userstory].failure.length > 0){
             failedComment += 'Userstory: ' + userstory + ' - https://demoportal.atlassian.net/browse/' + userstory + '\n';
-            failedComment += '  Failed with the following tests: \n';
+            failedComment += '-- Failed with the following tests: \n';
             tests[userstory].failure.forEach(test => {
-                failedComment += "      Test: " + test.title + "\n";
-                failedComment += "      Error: " + test.err.message + "\n";
+                failedComment += "---- Test: " + test.title + "\n";
+                failedComment += "---- Error: " + test.err.message + "\n";
             });
             issueExists = true;
         }
