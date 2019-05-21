@@ -1,4 +1,4 @@
-const socket = io('http://erst-demo-ui-socket-mercury.cluster.nonp.dp.dig.nchosting.dk');
+const socket = io('http://ufst-demo-ui-socket-mercury.cluster.nonp.dp.dig.nchosting.dk');
 
 let workers = [];
 let jobs = [];
