@@ -5,7 +5,7 @@ const jira = require('./tests/jira.js');
 
 let tests = {};
 
-describe('OK-53', function () {
+describe('OK-65', function () {
     //const logo = "/resources/ufst_logo.png";
     const logo = "/resources/netcompany_logo.png";
 
